@@ -1,8 +1,13 @@
-#if 0
+#if 1
 #include "patches.h"
 
 #include "misc_funcs.h"
-#include "libc/stdarg.h"
+// #include "libc/stdarg.h"
+
+typedef char *va_list;
+
+#define va_start(vp, parmN) (vp = ((va_list)&parmN + sizeof(parmN)))
+#define va_end(__list)
 
 typedef unsigned int size_t;
 
@@ -25,11 +30,11 @@ RECOMP_EXPORT int recomp_printf(const char* fmt, ...) {
 
     return ret;
 }
-    #else
-    void dummy_function(void) {
-        int dummyVar = 0;
+#else
+void dummy_function(void) {
+    int dummyVar = 0;
 
-        if (dummyVar);
-    }
-    #endif
+    if (dummyVar);
+}
+#endif
 

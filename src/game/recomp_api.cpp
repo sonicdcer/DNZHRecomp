@@ -23,16 +23,6 @@ extern "C" void recomp_sleep_miliseconds(uint8_t* rdram, recomp_context* ctx) {
     ultramodern::sleep_milliseconds(time);
 }
 
-extern "C" void bzero_recomp(uint8_t* rdram, recomp_context* ctx) {
-    // Empty
-}
-
-// int toupper(int c) {
-//     if (c >= 'a' && c <= 'z')
-//         return c - ('a' - 'A');
-//     return c;
-// }
-
 extern "C" void toupper_recomp(uint8_t* rdram, recomp_context* ctx) {
     // Empty
     s32 c = _arg<0, s32>(rdram, ctx);

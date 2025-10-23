@@ -10,9 +10,9 @@ single_file_output = true
 use_absolute_symbols = true
 
 # Point the recompiler at the symbol files so that it can resolve relocations during recompilation.
-# func_reference_syms_file = "MarioKart64RecompSyms/mk64.us.syms.toml"
-# data_reference_syms_files = [ "MarioKart64RecompSyms/mk64.us.datasyms.toml" ]
-# data_reference_syms_files = [ "MarioKart64RecompSyms/mk64.us.datasyms.toml", "MarioKart64RecompSyms/mk64.us.datasyms_static.toml" ]
+func_reference_syms_file = "DNZHRecompSyms/dump.toml"
+data_reference_syms_files = [ "DNZHRecompSyms/data_dump.toml" ]
+# data_reference_syms_files = [ "DNZHRecompSyms/datasyms.toml", "DNZHRecompSyms/datasyms_static.toml" ]
 
 # Tell the recompiler to write the output binary. Doing this instead of using objcopy allows the recompiler to patch MIPS32 relocs.
 output_binary_path = "patches/patches.bin"

@@ -31,32 +31,28 @@
 
 #include "PR/ultratypes.h"
 #include "rt64_extended_gbi.h"
-#include "PR/gbi.h"
-#include "PR/os_thread.h"
-#include "PR/os_message.h"
-#include "common_structs.h"
-#include "structs.h"
-#include "externs.h"
-#include "misc_funcs.h"
-#include "defines.h"
-#include "macros.h"
-#include "course.h"
-#include "mk64.h"
-#include "objects.h"
-#include "render_objects.h"
-#include "mk64_tagging.h"
-#include "actor_types.h"
-#include "misc_funcs.h"
-#include "menu_items.h"
-#include "menus.h"
-#include "sounds.h"
-#include "objects.h"
-#include "debug.h"
+// #include "PR/gbi.h"
+// #include "PR/os_thread.h"
+// #include "PR/os_message.h"
+// #include "common_structs.h"
+// #include "structs.h"
+// #include "externs.h"
+// #include "misc_funcs.h"
+// #include "defines.h"
+// #include "macros.h"
+// #include "course.h"
+// #include "mk64.h"
+// #include "objects.h"
+// #include "render_objects.h"
+// #include "mk64_tagging.h"
+// #include "actor_types.h"
+// #include "misc_funcs.h"
+// #include "menu_items.h"
+// #include "menus.h"
+// #include "sounds.h"
+// #include "objects.h"
+// #include "debug.h"
 
-extern s32 gCamera1Skipped;
-extern s32 gCamera2Skipped;
-extern s32 gCamera3Skipped;
-extern s32 gCamera4Skipped;
 
 #define MAKE_RGB(r, g, b) (((r) << 0x10) | ((g) << 0x08) | (b << 0x00))
 
