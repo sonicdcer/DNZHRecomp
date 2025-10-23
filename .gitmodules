@@ -10,3 +10,6 @@
 [submodule "lib/lunasvg"]
 	path = lib/lunasvg
 	url = https://github.com/sammycage/lunasvg
+[submodule "lib/DukeNukemZeroHour"]
+	path = lib/DukeNukemZeroHour
+	url = https://github.com/Gillou68310/DukeNukemZeroHour
