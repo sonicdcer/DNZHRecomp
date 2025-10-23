@@ -189,21 +189,15 @@ size = 200
 
 # Hooks
 
-# Function definition for the overlay loading function.
-#[[patches.func]]
-#name = "load_overlays"
-#args = ["u32", "u32", "u32"]
-
-# Function hooks for overlay loading.
-#[[patches.hook]]
-#func = "mainLoop_00003148"
-#text = "load_overlays((uint32_t)ctx->r6, (uint32_t)ctx->r5, (uint32_t)ctx->r7);"
-#after_vram = 0x80002548
+[[patches.hook]]
+func = "mainLoop_00003148"
+text = "load_overlays(0xEB300, 0x801C0D80, 0xBA70);"
+#before_vram = 0x80002548
 
 [[patches.hook]]
-func = "audio_80007A44"
-text = "load_overlays((uint32_t)ctx->r6, (uint32_t)ctx->r5, (uint32_t)ctx->r7);"
-after_vram = 0x80007A5C
+func = "mainLoop_00003148"
+text = "yield_self_1ms(rdram);"
+before_vram = 0x80002E9C
 
 # Single-instruction patches
 
@@ -212,3 +206,7 @@ func = "main_80003940"
 vram = 0x80003970
 value = 0x00000000 # jal func_80000000 -> nop
 
+[[patches.instruction]]
+func = "func_801C30EC_000ED66C"
+vram = 0x801C313C
+value = 0x00000000 # nop
