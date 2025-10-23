@@ -19,3 +19,6 @@
 [submodule "lib/sse2neon"]
 	path = lib/sse2neon
 	url = https://github.com/DLTcollab/sse2neon
+[submodule "DNZHRecompSyms"]
+	path = DNZHRecompSyms
+	url = https://github.com/sonicdcer/DNZHRecompSyms.git
