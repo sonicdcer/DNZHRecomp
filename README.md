@@ -1,3 +1,8 @@
+# NOTICE
+
+This is still a Work In Progress, it doesn't work and it's just an attempt to satisfy my own curiosity.
+
+
 # Duke Nukem Zero Hour: Recompiled
 Duke Nukem Zero Hour: Recompiled is a project that uses [N64: Recompiled](https://github.com/Mr-Wiseguy/N64Recomp) to **statically recompile** Duke Nukem Zero Hour into a native port with many new features and enhancements. This project uses [RT64](https://github.com/rt64/rt64) as the rendering engine to provide some of these enhancements.
 
