@@ -6,7 +6,7 @@ LD      ?= ld.lld
 CFLAGS   := -target mips -mips2 -mabi=32 -O2 -G0 -mno-abicalls -mno-odd-spreg -mno-check-zero-division \
 			-fomit-frame-pointer -ffast-math -fno-unsafe-math-optimizations -fno-builtin-memset \
 			-Wall -Wextra -Wno-incompatible-library-redeclaration -Wno-unused-parameter -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-missing-braces -Wno-unsupported-floating-point-opt -Wno-switch
-CPPFLAGS := -nostdinc -DTARGET_N64 -DF3DEX_GBI_2 -D_LANGUAGE_C -DMIPS -I ../lib/DukeNukemZeroHour/include -I ../lib/DukeNukemZeroHour/libs/libultra/include/2.0I -I ../lib/rt64/include -I ../lib/N64ModernRuntime/N64Recomp/include
+CPPFLAGS := -nostdinc -DTARGET_N64 -DF3DEX_GBI_2 -D_LANGUAGE_C -D_FINALROM -D_MIPS_SZLONG=32 -DMIPS -I ../lib/DukeNukemZeroHour/include -I ../lib/DukeNukemZeroHour/libs/libultra/include/2.0I -I ../lib/rt64/include -I ../lib/N64ModernRuntime/N64Recomp/include
 LDFLAGS  := -nostdlib -T patches.ld -T syms.ld -Map patches.map --unresolved-symbols=ignore-all --emit-relocs
 
 C_SRCS := $(wildcard *.c)
