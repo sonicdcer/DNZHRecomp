@@ -2,12 +2,7 @@
 #include "patches.h"
 
 #include "misc_funcs.h"
-// #include "libc/stdarg.h"
-
-typedef char *va_list;
-
-#define va_start(vp, parmN) (vp = ((va_list)&parmN + sizeof(parmN)))
-#define va_end(__list)
+#include "stdarg_sf64.h"
 
 typedef unsigned int size_t;
 
