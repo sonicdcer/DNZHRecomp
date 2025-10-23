@@ -13,3 +13,6 @@
 [submodule "lib/DukeNukemZeroHour"]
 	path = lib/DukeNukemZeroHour
 	url = https://github.com/Gillou68310/DukeNukemZeroHour
+[submodule "lib/rt64"]
+	path = lib/rt64
+	url = https://github.com/rt64/rt64
