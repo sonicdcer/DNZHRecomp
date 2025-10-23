@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>io.github.mariokart64recomp.mariokart64recomp</id>
   
-  <name>MarioKart 64: Recompiled</name>
+  <name>Duke Nukem Zero Hour: Recompiled</name>
   <summary>Static recompilation of MarioKart 64 for PC.</summary>
   
   <metadata_license>CC0-1.0</metadata_license>
@@ -17,11 +17,11 @@
   
   <description>
     <p>
-      MarioKart 64: Recompiled is a project that uses N64: Recompiled to statically recompile MarioKart 64 into a native port with many new features and enhancements. This project uses RT64 as the rendering engine to provide some of these enhancements.
+      Duke Nukem Zero Hour: Recompiled is a project that uses N64: Recompiled to statically recompile MarioKart 64 into a native port with many new features and enhancements. This project uses RT64 as the rendering engine to provide some of these enhancements.
 
       The original game is required to run this project.
 
-      https://github.com/sonicdcer/MarioKart64Recomp
+      https://github.com/sonicdcer/DNZHRecomp
     </p>
   </description>
   

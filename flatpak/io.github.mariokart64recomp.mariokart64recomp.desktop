@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=MarioKart 64: Recompiled
-Exec=/app/bin/MarioKart64Recompiled
+Name=Duke Nukem Zero Hour: Recompiled
+Exec=/app/bin/DNZHRecompiled
 Type=Application
 Icon=io.github.mariokart64recomp.mariokart64recomp
 Categories=Game;

@@ -17,7 +17,7 @@
   ],
   "modules": [
     {
-      "name": "MarioKart64Recompiled",
+      "name": "DNZHRecompiled",
       "buildsystem": "simple",
       "build-commands": [
         "cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_MAKE_PROGRAM=ninja -G Ninja -S lib/N64Recomp -B lib/N64Recomp/cmake-build",
@@ -28,10 +28,10 @@
         "./N64Recomp us.toml",
         "./RSPRecomp aspMain.us.toml",
         "cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_MAKE_PROGRAM=ninja -DPATCHES_C_COMPILER=clang -DPATCHES_LD=ld.lld -DRECOMP_FLATPAK=ON -G Ninja -S . -B cmake-build",
-        "cmake --build cmake-build --config Release --target MarioKart64Recompiled --parallel",
+        "cmake --build cmake-build --config Release --target DNZHRecompiled --parallel",
         "rm -rf assets/scss",
         "mkdir -p /app/bin",
-        "cp cmake-build/MarioKart64Recompiled /app/bin/MarioKart64Recompiled",
+        "cp cmake-build/DNZHRecompiled /app/bin/DNZHRecompiled",
         "cp recompcontrollerdb.txt /app/bin/recompcontrollerdb.txt",
         "cp -R assets /app/bin/assets",
         "install -Dm644 icons/512.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png",

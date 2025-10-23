@@ -4,7 +4,7 @@ This guide will help you build the project on your local machine. The process wi
 
 These steps cover: Running the recompiler and building the project.
 
-## 1. Clone the MarioKart64Recomp Repository
+## 1. Clone the DNZHRecomp Repository
 This project makes use of submodules so you will need to clone the repository with the `--recurse-submodules` flag.
 
 ```bash
@@ -36,11 +36,11 @@ choco install make
 ```
 
 ## 3. Generating the C code
-Copy the ROM to the root of the MarioKart64Recomp repository with this filename:
+Copy the ROM to the root of the DNZHRecomp repository with this filename:
 
-- `mk64.us.z64`
+- `baserom.us.z64`
 
-Now that you have the required files, you must build [N64Recomp](https://github.com/Mr-Wiseguy/N64Recomp) and run it to generate the C code to be compiled. The building instructions can be found [here](https://github.com/Mr-Wiseguy/N64Recomp?tab=readme-ov-file#building). That will build the executables: `N64Recomp` and `RSPRecomp` which you should copy to the root of the MarioKart64Recomp repository.
+Now that you have the required files, you must build [N64Recomp](https://github.com/Mr-Wiseguy/N64Recomp) and run it to generate the C code to be compiled. The building instructions can be found [here](https://github.com/Mr-Wiseguy/N64Recomp?tab=readme-ov-file#building). That will build the executables: `N64Recomp` and `RSPRecomp` which you should copy to the root of the DNZHRecomp repository.
 
 After that, go back to the repository root, and run the following commands:
 ```bash
@@ -58,9 +58,9 @@ If you prefer the command line or you're on a Unix platform you can build the pr
 
 ```bash
 cmake -S . -B build-cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -G Ninja -DCMAKE_BUILD_TYPE=Release # or Debug if you want to debug
-cmake --build build-cmake --target MarioKart64Recompiled -j$(nproc) --config Release # or Debug
+cmake --build build-cmake --target DNZHRecompiled -j$(nproc) --config Release # or Debug
 ```
 
 ## 5. Success
 
-Voilà! You should now have a `MarioKart64Recompiled` executable in the build directory! If you used Visual Studio this will be `out/build/x64-[Configuration]` and if you used the provided CMake commands then this will be `build-cmake`. You will need to run the executable out of the root folder of this project or copy the assets folder to the build folder to run it.
+Voilà! You should now have a `DNZHRecompiled` executable in the build directory! If you used Visual Studio this will be `out/build/x64-[Configuration]` and if you used the provided CMake commands then this will be `build-cmake`. You will need to run the executable out of the root folder of this project or copy the assets folder to the build folder to run it.
