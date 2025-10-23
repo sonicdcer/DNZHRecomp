@@ -1,0 +1,214 @@
+# Config file for Duke Nukem Zero Hour US Recompilation.
+
+[input]
+entrypoint = 0x80000400
+# Paths are relative to the location of this config file.
+elf_path = "dukenukemzerohour.elf"
+output_func_path = "RecompiledFuncs"
+
+[patches]
+stubs = [
+]
+
+ignored = [
+]
+
+# Function size
+
+[[patches.function_sizes]]
+name = "__muldi3"
+size = 56
+
+[[patches.function_sizes]]
+name = "__umoddi3"
+size = 64
+
+[[patches.function_sizes]]
+name = "__osExceptionPreamble"
+size = 16
+
+[[patches.function_sizes]]
+name = "__osPopThread"
+size = 16
+
+[[patches.function_sizes]]
+name = "__osSetCompare"
+size = 12
+
+[[patches.function_sizes]]
+name = "osInvalDCache"
+size = 176
+
+[[patches.function_sizes]]
+name = "handle_CpU"
+size = 52
+
+[[patches.function_sizes]]
+name = "send_mesg"
+size = 188
+
+[[patches.function_sizes]]
+name = "start"
+size = 68
+
+[[patches.function_sizes]]
+name = "__ucmpdi2"
+size = 48
+
+[[patches.function_sizes]]
+name = "__fixsfdi"
+size = 236
+
+[[patches.function_sizes]]
+name = "bcopy"
+size = 796
+
+[[patches.function_sizes]]
+name = "__cmpdi2"
+size = 64
+
+[[patches.function_sizes]]
+name = "__moddi3"
+size = 180
+
+[[patches.function_sizes]]
+name = "__udivdi3"
+size = 24
+
+[[patches.function_sizes]]
+name = "__osGetCause"
+size = 12
+
+[[patches.function_sizes]]
+name = "sqrtf"
+size = 8
+
+[[patches.function_sizes]]
+name = "osSetIntMask"
+size = 160
+
+[[patches.function_sizes]]
+name = "__osGetSR"
+size = 12
+
+[[patches.function_sizes]]
+name = "osMapTLBRdb"
+size = 88
+
+[[patches.function_sizes]]
+name = "osWritebackDCacheAll"
+size = 36
+
+[[patches.function_sizes]]
+name = "__osException"
+size = 1404
+
+[[patches.function_sizes]]
+name = "__osEnqueueAndYield"
+size = 264
+
+[[patches.function_sizes]]
+name = "__osEnqueueThread"
+size = 72
+
+[[patches.function_sizes]]
+name = "osGetCount"
+size = 12
+
+[[patches.function_sizes]]
+name = "bzero"
+size = 160
+
+[[patches.function_sizes]]
+name = "__floatdisf"
+size = 244
+
+[[patches.function_sizes]]
+name = "__osProbeTLB"
+size = 184
+
+[[patches.function_sizes]]
+name = "__osCleanupThread"
+size = 12
+
+[[patches.function_sizes]]
+name = "__osDispatchThread"
+size = 380
+
+[[patches.function_sizes]]
+name = "__osSetFpcCsr"
+size = 16
+
+[[patches.function_sizes]]
+name = "__osRestoreInt"
+size = 28
+
+[[patches.function_sizes]]
+name = "bcmp"
+size = 272
+
+[[patches.function_sizes]]
+name = "__divdi3"
+size = 168
+
+[[patches.function_sizes]]
+name = "__osSetSR"
+size = 16
+
+[[patches.function_sizes]]
+name = "osWritebackDCache"
+size = 116
+
+[[patches.function_sizes]]
+name = "osUnmapTLBAll"
+size = 68
+
+[[patches.function_sizes]]
+name = "__osDisableInt"
+size = 112
+
+[[patches.function_sizes]]
+name = "osInvalICache"
+size = 116
+
+[[patches.function_sizes]]
+name = "b_big"
+size = 8
+
+[[patches.function_sizes]]
+name = "a_big"
+size = 8
+
+[[patches.function_sizes]]
+name = "div64_64"
+size = 252
+
+[[patches.function_sizes]]
+name = "div64_32"
+size = 200
+
+# Hooks
+
+# Function definition for the overlay loading function.
+#[[patches.func]]
+#name = "load_overlays"
+#args = ["u32", "u32", "u32"]
+
+# Function hooks for overlay loading.
+#[[patches.hook]]
+#func = "mainLoop_00003148"
+#text = "load_overlays((uint32_t)ctx->r6, (uint32_t)ctx->r5, (uint32_t)ctx->r7);"
+#after_vram = 0x80002548
+
+[[patches.hook]]
+func = "audio_80007A44"
+text = "load_overlays((uint32_t)ctx->r6, (uint32_t)ctx->r5, (uint32_t)ctx->r7);"
+after_vram = 0x80007A5C
+
+# Single-instruction patches
+
+[[patches.instruction]]
+func = "main_80003940"
+vram = 0x80003970
+value = 0x00000000 # jal func_80000000 -> nop
+
