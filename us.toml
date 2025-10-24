@@ -212,3 +212,9 @@ value = 0x00000000 # jal func_80000000 -> nop
 func = "func_801C30EC"
 vram = 0x801C313C
 value = 0x00000000 # nop
+
+# force 1 framebuffer for 8 MB
+[[patches.instruction]]
+func = "allocMemory"
+vram = 0x8000207C
+value = 0x24020001 # nop
