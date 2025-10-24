@@ -23,8 +23,8 @@
 #define osPiStartDma osPiStartDma_recomp
 #define osStartThread osStartThread_recomp
 
-#define __sinf __sinf_recomp
-#define __cosf __cosf_recomp
+#define sinf __sinf_recomp
+#define cosf __cosf_recomp
 // #define sqrtf sqrtf_recomp
 #define bzero bzero_recomp
 #define gRandFloat sRandFloat
@@ -37,8 +37,8 @@
 // #include "PR/os_thread.h"
 // #include "PR/os_message.h"
 // #include "common_structs.h"
-// #include "structs.h"
-// #include "externs.h"
+#include "structs.h"
+#include "externs.h"
 // #include "misc_funcs.h"
 // #include "defines.h"
 // #include "macros.h"

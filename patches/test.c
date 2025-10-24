@@ -1,17 +1,5 @@
 #include "patches.h"
 
-extern Gfx* gpDisplayList;
-extern s32 gScreenWidth;
-extern s32 gScreenHeight;
-extern s32 _framebufferIndex_000BE020;
-extern u8* gDepthBuffer;
-extern u8* _framebuffer[3];
-extern s32 D_800BD3E8;
-extern u8 _red_000BDFEC;
-extern u8 _green_000BDFED;
-extern u8 _blue_000BDFEE;
-extern u16 gGraphicsOption;
-
 #if 0
 RECOMP_PATCH void main_80000C74(void)
 {
