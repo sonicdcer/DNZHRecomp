@@ -1,5 +1,5 @@
 {
-  "id": "io.github.mariokart64recomp.mariokart64recomp",
+  "id": "io.github.dnzhrecomp.dnzhrecomp",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "23.08",
   "sdk": "org.freedesktop.Sdk",
@@ -35,8 +35,8 @@
         "cp recompcontrollerdb.txt /app/bin/recompcontrollerdb.txt",
         "cp -R assets /app/bin/assets",
         "install -Dm644 icons/512.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png",
-        "install -Dm644 flatpak/io.github.mariokart64recomp.mariokart64recomp.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml",
-        "install -Dm644 flatpak/io.github.mariokart64recomp.mariokart64recomp.desktop /app/share/applications/${FLATPAK_ID}.desktop"
+        "install -Dm644 flatpak/io.github.dnzhrecomp.dnzhrecomp.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml",
+        "install -Dm644 flatpak/io.github.dnzhrecomp.dnzhrecomp.desktop /app/share/applications/${FLATPAK_ID}.desktop"
       ],
       "sources": [
         {

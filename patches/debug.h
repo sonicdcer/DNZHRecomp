@@ -1,7 +1,4 @@
-#ifndef MK64RECOMP_DEBUG
-#define MK64RECOMP_DEBUG
-
-#define DEBUG_ENDING 0
-#define DEBUG_CEREMONY 0
+#ifndef DNZHRECOMP_DEBUG
+#define DNZHRECOMP_DEBUG
 
 #endif

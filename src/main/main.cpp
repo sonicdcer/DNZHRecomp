@@ -352,7 +352,7 @@ gpr get_entrypoint_address();
 std::vector<recomp::GameEntry> supported_games = {
     {
         .rom_hash = 0xafc33da7101fec88, // retail
-        .internal_name = "MARIOKART64",
+        .internal_name = "DUKE NUKEM ZERO HOUR",
         .game_id = u8"dnzh.us",
         .mod_game_id = "dnzh",
         .save_type = recomp::SaveType::None,

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Duke Nukem Zero Hour: Recompiled
-Exec=/app/bin/DNZHRecompiled
-Type=Application
-Icon=io.github.mariokart64recomp.mariokart64recomp
-Categories=Game;
-Comment=Static recompilation of Mario Kart 64 for PC.
-MimeType=x-scheme-handler/mariokart64recomp
