@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Duke Nukem Zero Hour: Recompiled
+Exec=/app/bin/DNZHRecompiled
+Type=Application
+Icon=io.github.dnzhrecomp.dnzhrecomp
+Categories=Game;
+Comment=Static recompilation of Duke Nukem Zero Hour for PC.
+MimeType=x-scheme-handler/dnzhrecomp
