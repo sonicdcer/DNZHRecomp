@@ -2510,3 +2510,120 @@ button {
     background-color: #17D6E8;
   }
 }
+
+
+
+/* =========================================================
+   Foreground Animation (Closest Layer)
+   ========================================================= */
+@keyframes foreground-slide {
+  0%   { transform: translateX(60vw); opacity: 1; }
+  100% { transform: translateX(0);   opacity: 1; }
+}
+
+.launcher__foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+
+  /* Fastest layer, short duration */
+  animation: 8s ease-out 1 normal forwards foreground-slide;
+}
+
+
+/* =========================================================
+   Midground (Radioactive Barrels)
+   ========================================================= */
+@keyframes mid-slide {
+  0%   { transform: translateX(40vw); opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translateX(0);   opacity: .9; }
+}
+
+#layer-mid {
+  position: absolute;
+  bottom: -35vw;          /* anchor to ground */
+  left: -100vw;        /* extend view to the left for smooth entry */
+  width: auto;
+  height: 180%;       /* slightly taller for ground overlap */
+  pointer-events: none;
+  opacity: .9;
+  z-index: 2;
+  
+
+  /* Medium speed layer */
+  animation: 13s ease-out 1 normal forwards mid-slide;
+}
+
+/* =========================================================
+   Background Animation (Far Layer)
+   ========================================================= */
+@keyframes slide-mm-bg-over {
+  0%   { transform: translateX(20vw); opacity: 0; }
+  20%  { opacity: 0.75; }
+  100% { transform: translateX(0);   opacity: 0.75; }
+}
+
+.launcher__background-wrapper {
+  display: flex;
+  position: absolute;
+  top: -55vw;
+  right: -50%;
+  bottom: -50vw;
+  left: -80vw;
+  align-items: center;
+  justify-content: flex-start;
+  transform: translateX(0);
+  z-index: 1;
+
+  /* Slowest movement for far depth */
+  animation: 13.5s ease-out 1 normal forwards slide-mm-bg-over;
+}
+
+
+/* =========================================================
+   Background SVG fade
+   ========================================================= */
+@keyframes fade-mm-in {
+  0%   { opacity: 0; }
+  100% { opacity: 0.75; }
+}
+
+.launcher__background-mm {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  opacity: 0.75;
+  animation: 2.5s ease-in-out 1 normal forwards fade-mm-in;
+}
+
+/* =========================================================
+   Ensure all text & UI elements render above background layers
+   ========================================================= */
+.launcher__title-quadrant,
+.launcher__content-quadrant,
+.menu-list-item,
+.subtitle-title,
+.label-lg,
+.label-md,
+.label-sm,
+h1, h2, h3, p, span {
+  position: relative;
+  z-index: 1000;   /* safely above all visual layers */
+  pointer-events: auto; /* allow interaction if needed */
+}
+
+/* Optional: make sure no background SVG overlaps text */
+.launcher__foreground,
+#layer-mid,
+.launcher__background-wrapper,
+.launcher__background-mm {
+  pointer-events: none;
+}
