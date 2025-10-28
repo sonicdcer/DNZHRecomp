@@ -72,3 +72,4 @@ recomp_set_bgm_volume_0 = 0x8F0000F0;
 osPfsFindFile_recomp = 0x8F0000F4;
 osPfsReadWriteFile_recomp = 0x8F0000F8;
 osPfsDeleteFile_recomp = 0x8F0000FC;
+sprintf_recomp = 0x8F000100;

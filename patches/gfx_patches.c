@@ -20,6 +20,11 @@ RECOMP_PATCH void main_80000C74(void)
 RECOMP_PATCH void func_80000DDC(void) {
     // recomp_printf("FramebufferIndex: %d\n", _framebufferIndex_000BE020);
     gGraphicsOption = 1; // force graphics to be Medium
+
+#if DEBUG_MENU == 1
+    gDebugMenu = 1;
+#endif
+
     gEXEnable(gpDisplayList++);              // @recomp
     gEXSetRDRAMExtended(gpDisplayList++, 1); // @recomp
     gEXSetRefreshRate(gpDisplayList++, 60 / 1);

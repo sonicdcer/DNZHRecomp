@@ -25,6 +25,7 @@
 
 #define sinf __sinf_recomp
 #define cosf __cosf_recomp
+#define sprintf sprintf_recomp
 // #define sqrtf sqrtf_recomp
 #define bzero bzero_recomp
 #define gRandFloat sRandFloat
@@ -36,22 +37,9 @@
 #include "PR/mbi.h"
 // #include "PR/os_thread.h"
 // #include "PR/os_message.h"
-// #include "common_structs.h"
 #include "structs.h"
 #include "externs.h"
-// #include "misc_funcs.h"
-// #include "defines.h"
-// #include "macros.h"
-// #include "course.h"
-// #include "objects.h"
-// #include "render_objects.h"
-// #include "actor_types.h"
-// #include "misc_funcs.h"
-// #include "menu_items.h"
-// #include "menus.h"
-// #include "sounds.h"
-// #include "objects.h"
-// #include "debug.h"
+#include "debug.h"
 
 
 #define MAKE_RGB(r, g, b) (((r) << 0x10) | ((g) << 0x08) | (b << 0x00))
