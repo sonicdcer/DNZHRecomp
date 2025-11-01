@@ -47,7 +47,7 @@
 #include "PR/gbi.h"
 #include "PR/os.h"
 #include "PR/mbi.h"
-#include "PR\libaudio.h"
+#include "libaudio.h"
 #include "misc_funcs.h"
 // #include "PR/os_thread.h"
 // #include "PR/os_message.h"
