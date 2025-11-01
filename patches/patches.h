@@ -22,6 +22,8 @@
 #define osContGetQuery osContGetQuery_recomp
 #define osPiStartDma osPiStartDma_recomp
 #define osStartThread osStartThread_recomp
+#define osEepromLongRead osEepromLongRead_recomp
+#define osEepromLongWrite osEepromLongWrite_recomp
 
 #define sinf __sinf_recomp
 #define cosf __cosf_recomp
@@ -29,12 +31,24 @@
 // #define sqrtf sqrtf_recomp
 #define bzero bzero_recomp
 #define gRandFloat sRandFloat
+#define osPfsNumFiles osPfsNumFiles_recomp
+#define osPfsFreeBlocks osPfsFreeBlocks_recomp
+#define osPfsFileState osPfsFileState_recomp
+#define osPfsDeleteFile osPfsDeleteFile_recomp
+#define osPfsInitPak osPfsInitPak_recomp
+#define osPfsRepairId osPfsRepairId_recomp
+#define osPfsReadWriteFile osPfsReadWriteFile_recomp
+#define osPfsAllocateFile osPfsAllocateFile_recomp
+#define osPfsFindFile osPfsFindFile_recomp
+#define osMotorInit osMotorInit_recomp
 
 #include "PR/ultratypes.h"
 #include "rt64_extended_gbi.h"
 #include "PR/gbi.h"
 #include "PR/os.h"
 #include "PR/mbi.h"
+#include "PR\libaudio.h"
+#include "misc_funcs.h"
 // #include "PR/os_thread.h"
 // #include "PR/os_message.h"
 #include "structs.h"

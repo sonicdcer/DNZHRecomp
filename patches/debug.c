@@ -19,7 +19,7 @@ void debugMenu(void) {
     // _debugPlayerNum = (((D_8012C470) > 3) ? 3 : D_8012C470);
     // @recomp
     _debugPlayerNum = 0;
-    
+
     if (gButton[_debugPlayerNum] & 0x1000) {
         if (!_screenSelectButtonPressed_000E0589) {
             _screenSelectButtonPressed_000E0589 = 1;
@@ -564,7 +564,6 @@ void debugMenu(void) {
 }
 #endif
 
-
 #if DEBUG_SKIP_INTRO == 1
 RECOMP_PATCH void func_800006B4(void) {
     s32 i;
@@ -638,5 +637,195 @@ void func_801C15CC(void) {
 
     D_800BD3F9 = 1;
     D_801CD974 = 0;
+}
+#endif
+
+// Controller pak debugging patch function
+#if 1
+/*8008A724*/
+RECOMP_PATCH
+void controller_8008A724(void) {
+    s32 i;
+
+    if (D_800FA2F6_0000FBF5 != 0) {
+        osRecvMesg(&_serialMsgQ_0000F60F, NULL, 1);
+        osContGetReadData(D_800F9D40_0000F63F);
+
+        for (i = 0; i < MAXPLAYERS; i++) {
+            gController[i].stick_x = D_800F9D40_0000F63F[i].stick_x;
+            gController[i].stick_y = D_800F9D40_0000F63F[i].stick_y;
+
+            if ((D_800F9EF8_0000F7F7[i] != 0) || (D_800F9EFC_0000F7FB != 0)) {
+                if (gController[i].stick_x < -30)
+                    D_800F9D40_0000F63F[i].button |= L_JPAD;
+
+                if (gController[i].stick_x > 30)
+                    D_800F9D40_0000F63F[i].button |= R_JPAD;
+
+                if (gController[i].stick_y < -31)
+                    D_800F9D40_0000F63F[i].button |= D_JPAD;
+
+                if (gController[i].stick_y > 31)
+                    D_800F9D40_0000F63F[i].button |= U_JPAD;
+            }
+
+            if ((D_800F9D40_0000F63F[i].button & (L_JPAD | R_JPAD)) == (L_JPAD | R_JPAD))
+                D_800F9D40_0000F63F[i].button ^= (L_JPAD | R_JPAD);
+
+            if ((D_800F9D40_0000F63F[i].button & (D_JPAD | U_JPAD)) == (D_JPAD | U_JPAD))
+                D_800F9D40_0000F63F[i].button ^= (D_JPAD | U_JPAD);
+
+            gController[i].button2 =
+                D_800F9D40_0000F63F[i].button & (gController[i].button ^ D_800F9D40_0000F63F[i].button);
+            gController[i].button = D_800F9D40_0000F63F[i].button;
+
+            if (D_80197D44[i] != 0) {
+                if (D_800FA2EE_0000FBED[i] != 0)
+                    D_800FA2EE_0000FBED[i]--;
+
+                if (D_800FA2CA_0000FBC9[i] == 0) {
+                    if (D_8019956D[i] & 2)
+                        func_80087B9C(i);
+                } else {
+                    D_800FA2E6_0000FBE5[i]++;
+                    if (D_800FA2E6_0000FBE5[i] >= 600) {
+                        func_8008A59C(i);
+                        D_800FA2EE_0000FBED[i] = 60;
+                    } else {
+                        D_800FA2CA_0000FBC9[i]--;
+                        D_800FA2DA_0000FBD9[i] -= D_800FA2E2_0000FBE1[i];
+                        if (D_800FA2DA_0000FBD9[i] < 0) {
+                            D_800FA2DA_0000FBD9[i] += 256;
+                            if (!(D_8019956D[i] & 1))
+                                func_80087A90(i);
+                        } else {
+                            if (D_8019956D[i] & 1)
+                                func_80087B00(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        switch (D_80119A70) {
+            case CONTROLLER_EEPROM_LONG_READ:
+                osEepromLongRead(&_serialMsgQ_0000F60F, _arg0_0000FBFF, (u8*) _arg1_0000FC03, _arg2_0000FC07);
+                break;
+            case CONTROLLER_EEPROM_LONG_WRITE:
+                osEepromLongWrite(&_serialMsgQ_0000F60F, _arg0_0000FBFF, (u8*) _arg1_0000FC03, _arg2_0000FC07);
+                break;
+            case CONTROLLER_PFS_NUM_FILES:
+                D_800FE408 = osPfsNumFiles((OSPfs*) _arg0_0000FBFF, (s32*) _arg1_0000FC03, (s32*) _arg2_0000FC07);
+                break;
+            case CONTROLLER_PFS_FREE_BLOCKS:
+                D_800FE408 = osPfsFreeBlocks((OSPfs*) _arg0_0000FBFF, (s32*) _arg1_0000FC03);
+                break;
+            case CONTROLLER_PFS_FILE_STATE:
+                D_800FE408 = osPfsFileState((OSPfs*) _arg0_0000FBFF, _arg1_0000FC03, (OSPfsState*) _arg2_0000FC07);
+                break;
+            case CONTROLLER_PFS_DELETE_FILE:
+                D_800FE408 = osPfsDeleteFile((OSPfs*) _arg0_0000FBFF, _arg1_0000FC03, (u32) _arg2_0000FC07,
+                                             (u8*) _arg3_0000FC0B, (u8*) _arg4_0000FC0F);
+#if 1
+                u8* ext_name = (u8*) _arg4_0000FC0F;
+                u8* game_name = (u8*) _arg3_0000FC0B;
+                // @recomp: debug
+                recomp_printf("callback osPfsDeleteFile from game:\n \
+                            company_code: %x \n \
+                            game_code: %x \n",
+                              _arg1_0000FC03, _arg2_0000FC07);
+                
+                recomp_printf("ext_name: ");
+                for (int i = 0; i < 4; i++) {
+                    recomp_printf("%x",(u8*) ext_name[i]);
+                }
+                recomp_printf("\n");
+
+                recomp_printf("game_name: ");
+                for (size_t i = 0; i < 16; i++) {
+                    recomp_printf("%x", game_name[i]);
+                }
+                recomp_printf("\n");
+#endif
+                break;
+            case CONTROLLER_PFS_INIT_PAK:
+                D_800FE408 = osPfsInitPak(&_serialMsgQ_0000F60F, (OSPfs*) _arg0_0000FBFF, _arg1_0000FC03);
+                break;
+            case CONTROLLER_PFS_REPAIR_ID:
+                D_800FE408 = osPfsRepairId((OSPfs*) _arg0_0000FBFF);
+                break;
+            case CONTROLLER_PFS_READ_WRITE_FILE:
+                D_800FE408 = osPfsReadWriteFile((OSPfs*) _arg0_0000FBFF, _arg1_0000FC03, _arg2_0000FC07, _arg3_0000FC0B,
+                                                _arg4_0000FC0F, (u8*) _arg5_0000FC13);
+                break;
+            case CONTROLLER_PFS_ALLOCATE_FILE:
+                D_800FE408 = osPfsAllocateFile((OSPfs*) _arg0_0000FBFF, _arg1_0000FC03, (u32) _arg2_0000FC07,
+                                               (u8*) _arg3_0000FC0B, (u8*) _arg4_0000FC0F, (s32) _arg5_0000FC13,
+                                               (s32*) _arg6_0000FC17);
+                break;
+            case CONTROLLER_PFS_FIND_FILE:
+                D_800FE408 = osPfsFindFile((OSPfs*) _arg0_0000FBFF, _arg1_0000FC03, (u32) _arg2_0000FC07,
+                                           (u8*) _arg3_0000FC0B, (u8*) _arg4_0000FC0F, (s32*) _arg5_0000FC13);
+                break;
+            case CONTROLLER_MOTOR_INIT:
+                // @force unplugged Rumble Pak.
+                // D_800FE408 = osMotorInit(&_serialMsgQ_0000F60F, (OSPfs*) _arg0_0000FBFF, _arg1_0000FC03);
+                D_800FE408 = 1;
+                break;
+            case CONTROLLER_GET_STATUS:
+                D_800FE408 = osContStartQuery(&_serialMsgQ_0000F60F);
+                osRecvMesg(&_serialMsgQ_0000F60F, NULL, 1);
+                osContGetQuery(_statusData_0000F62F);
+                break;
+        }
+        D_80119A70 = 0;
+        osContStartReadData(&_serialMsgQ_0000F60F);
+    }
+}
+#endif
+
+#if 0
+RECOMP_PATCH
+u8 func_8008A370(u8 pfsCmd, s32 contAddr, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    if (D_80119A70 == 0) {
+        // @recomp: debug
+        recomp_printf("Calling func_8008A370:\n \
+                            company_code: %x \n \
+                            game_code: %x \n \
+                            game_name: %x \n \
+                            ext_name: %x \n \
+                            file_size_in_bytes: %x \n \
+                            file_no: %x \n",
+                      arg2, arg3, arg4, arg5, arg6, arg7);
+        _arg0_0000FBFF = contAddr;
+        _arg1_0000FC03 = arg2;
+        _arg2_0000FC07 = arg3;
+        _arg3_0000FC0B = arg4;
+        _arg4_0000FC0F = arg5;
+        _arg5_0000FC13 = arg6;
+        _arg6_0000FC17 = arg7;
+        D_800FE408 = 0;
+        D_80119A70 = pfsCmd;
+        D_800FA2FC_0000FBFB = pfsCmd;
+        return 1;
+    }
+    return 0;
+}
+#endif
+// yield_self_1ms();
+#if 0
+RECOMP_PATCH int MusHandleAsk(musHandle handle) {
+    channel_t* cp;
+    int i, count;
+    recomp_printf(" max_channels_0000FCC3 %d\n",max_channels_0000FCC3);
+    if (!handle)
+        return (0);
+
+    for (i = 0, cp = mus_channels_0000FCCB, count = 0; i < max_channels_0000FCC3; i++, cp++) {
+        if (cp->handle == handle) {
+            count++;
+        }
+    }
+    return (count);
 }
 #endif
