@@ -83,3 +83,5 @@ osPfsInitPak_recomp = 0x8F00011C;
 osEepromLongRead_recomp = 0x8F000120;
 osEepromLongWrite_recomp = 0x8F000124;
 yield_self_1ms = 0x8F000128;
+osCreateThread_recomp = 0x8F00012C;
+yield_self = 0x8F000130;

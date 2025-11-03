@@ -829,3 +829,71 @@ RECOMP_PATCH int MusHandleAsk(musHandle handle) {
     return (count);
 }
 #endif
+
+#if DEBUG_SKIP_INTRO_CUTSCENES == 1
+/*80001D44*/
+RECOMP_PATCH void func_80001D44(void)
+{
+    s16 i;
+    s16 width;
+    s16 height;
+
+    cache1d_8002AAC0();
+    MusStop(1 | 2, 0);
+    switch (gGraphicsOption)
+    {
+    case 0:
+        width = 320;
+        height = 240;
+        break;
+    case 1:
+        width = 320;
+        height = 240*2;
+        break;
+    case 2:
+        width = 512;
+        height = 384;
+        break;
+    }
+    D_8012C470 = D_801CDC64.unk1;
+    if (D_801CDC64.unk1 == 0)
+    {
+        D_8012C470 = 1;
+    }
+    for (i = 0; i < D_8012C470; i++)
+    {
+        func_80000F68(i);
+        func_80095390(i);
+    }
+    D_800DEEA0 = 0;
+    if ((u32)osMemSize > 0x400000U)
+    {
+        D_800DEEA0 = 1;
+        gDisplayListMaxSize = 0xA000;
+        gVertexN64MaxSize = 0x6000;
+    }
+    else if (D_8012C470 < 2)
+    {
+        gDisplayListMaxSize = DISPLAY_LIST_SIZE*2;
+        gVertexN64MaxSize = 0x1800;
+    }
+    else
+    {
+        gDisplayListMaxSize = DISPLAY_LIST_SIZE*3;
+        gVertexN64MaxSize = 0x2400;
+    }
+    allocMemory(width, height, gDisplayListMaxSize, gVertexN64MaxSize);
+    func_8001F928(width, height);
+    _red_000BDFEC = 0;
+    _green_000BDFED = 0;
+    _blue_000BDFEE = 0;
+    D_800BD3E8 = 1;
+    D_801A1970 = 1;
+    func_80000DDC();
+    _clearDepthBuffer();
+
+    // @recomp: skip level intro cutscenes
+    // D_800DF585 = 0;
+    D_800DF585 = 1;
+}
+#endif

@@ -9,7 +9,9 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "_LANGUAGE_C"
+                "_LANGUAGE_C",
+                "DVERSION_US",
+                "DTARGET_N64"
             ]
         }
     ],

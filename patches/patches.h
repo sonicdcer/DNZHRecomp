@@ -14,6 +14,7 @@
 #define osFlashWriteBuffer osFlashWriteBuffer_recomp
 #define osWritebackDCache osWritebackDCache_recomp
 #define osInvalICache osInvalICache_recomp
+#define osCreateThread osCreateThread_recomp
 #define osGetTime osGetTime_recomp
 
 #define osContStartReadData osContStartReadData_recomp
@@ -47,6 +48,7 @@
 #include "PR/gbi.h"
 #include "PR/os.h"
 #include "PR/mbi.h"
+#include "PR/sched.h"
 #include "libaudio.h"
 #include "misc_funcs.h"
 // #include "PR/os_thread.h"
